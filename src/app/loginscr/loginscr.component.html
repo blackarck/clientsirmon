@@ -1,0 +1,44 @@
+<body class="mat-app-background">
+    <!-- Toolbar -->
+    <mat-toolbar color='primary'>
+        <mat-toolbar-row color='accent'>
+            <span> Cloud Eye  - Server Monitoring Application</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+
+
+    <div>
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+            <mat-grid-list cols="2">
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="form-container">
+
+                        <mat-form-field>
+                            <input matInput placeholder="User ID" name="userid" formControlName='userid' required minlength="4" value="">
+                            <div *ngIf="loginform?.get('userid').errors && submitted" class="invalidmsg">
+                                userid is required.
+                            </div>
+                            <!--<div *ngIf="userid?.errors.minlength">
+                                userid must be at least 4 characters long.
+                            </div> -->
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Password" formControlName='password' name="password" required minlength="4" value="">
+                            <div *ngIf="loginform?.get('password').errors && submitted" class="invalidmsg">
+                                password is required.
+                            </div>
+                            <!-- <div *ngIf="pwd.errors.minlength">
+                                password must be at least 4 characters long.
+                            </div>-->
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" [disabled]='!loginform.valid'>Submit</button>
+
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </div>
+
+</body>
