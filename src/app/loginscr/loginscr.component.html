@@ -33,6 +33,9 @@
                                 password must be at least 4 characters long.
                             </div>-->
                         </mat-form-field>
+                        <div *ngIf="errormsg" class="invalidmsg">
+                            {{errormsgtxt}}
+                        </div>
                         <button mat-raised-button color="primary" [disabled]='!loginform.valid'>Submit</button>
 
                     </div>

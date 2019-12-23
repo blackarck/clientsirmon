@@ -8,10 +8,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginscrComponent } from './loginscr/loginscr.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ClientsnapComponent } from './clientsnap/clientsnap.component';
 
 
 const appRoutes: Routes = [
   { path: 'loginscr', component: LoginscrComponent },
+  { path: 'dashboard', component: DashboardComponent , 
+  children:[
+    {path: 'home', component: ClientsnapComponent},
+    {path: 'profile', component : ProfileComponent},
+    { path: '', redirectTo: '/dashboard/home', pathMatch:'full'}
+  ]},
   { path: '', redirectTo: '/loginscr', pathMatch: 'full'  }
 ];
 
@@ -19,7 +27,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginscrComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent,
+    ClientsnapComponent
   ],
   imports: [
     BrowserModule,

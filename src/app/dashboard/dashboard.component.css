@@ -1,0 +1,39 @@
+.dash-icon {
+    padding: 0 5px 0 5px;
+}
+
+.dash-spacer {
+    flex: 1 1 auto;
+}
+
+.sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.sidenav-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.sidenavContainer {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main-container {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 50px;
+    right: 50px;
+    align-items: center;
+    justify-content: center;
+}
