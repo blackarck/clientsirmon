@@ -31,7 +31,7 @@ export class LoginscrComponent implements OnInit {
     const posturl = 'https://localhost:3000/api/user/login';
     let formObj = this.loginform.getRawValue(); 
     let serializedForm = JSON.stringify(formObj);
-    console.log("Serialized form " + serializedForm);
+    //console.log("Serialized form " + serializedForm);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',

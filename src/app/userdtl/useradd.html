@@ -1,0 +1,26 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+<h1 mat-dialog-title backgroundcolor='primary'>Add Users</h1>
+<div mat-dialog-content>
+
+    <form [formGroup]="addForm" (ngSubmit)="saveUserData()">
+        <mat-form-field>
+            <input matInput formControlName='clientid' [(ngModel)]="clientid" placeholder='Client ID'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName='emailid' [(ngModel)]="emailid" placeholder='email id'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName='username' [(ngModel)]="username" placeholder='User Name'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName='phone' [(ngModel)]="phone" placeholder='Phone'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName='role' [(ngModel)]="role" placeholder='Role'>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="saveUserData()" cdkFocusInitial [mat-dialog-close]="data">Submit</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

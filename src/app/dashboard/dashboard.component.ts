@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   currentUser;
   username: String;
   opened: boolean;
+  isAdmin:boolean=false;
 
   constructor( private route: ActivatedRoute,  private router: Router,private http: HttpClient,private loginsrvc: LoginsrvcService) {
     //console.log("Token recieved " + this.route.snapshot.paramMap.get('token') );
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = this.currentUser.token; // your token
     this.validatetoken();
-    
+    //console.log("end of constructor dashboard");
    }
 
   ngOnInit() {
@@ -46,17 +47,26 @@ export class DashboardComponent implements OnInit {
         //console.log("response " + res.message +  " " + res.success);
         if (res.success){
           //navigagte to dahsboard else keep it in loginscreen with error message
-        //console.log(" user is "+ res[0].userid + " name " + res[0].user_name);
+       //console.log(" user is "+ res[0].userid + " name " + res[0].user_name +  res[0].role);
         this.username = res[0].user_name;
+        localStorage.setItem('userid',res[0].userid);
+        localStorage.setItem('userrole', res[0].role);
+        localStorage.setItem('clientid',res[0].clientid);
+        localStorage.setItem('emailid',res[0].emailid);
+        localStorage.setItem('username',res[0].user_name);
+ 
+        if(res[0].role =='admin' || res[0].role=='suadmin'){
+          this.isAdmin=true;
+        }
         }else{
           //do nothing and show the error message
-          //console.log("Show error message " + res.message);
+           console.log("Show error message " + res.message);
           this.router.navigate(['/']);
          
         }
       } ,
       (err)=> {
-        console.log(err);
+       // console.log(err);
         console.log("error " + err.error.message);
         this.router.navigate(['/']);
       }

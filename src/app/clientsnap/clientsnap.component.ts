@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientsnapComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+    //console.log("Client snapshot constructor");
+   }
 
   ngOnInit() {
   }

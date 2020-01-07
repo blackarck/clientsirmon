@@ -15,9 +15,9 @@
 
 .sidenav-content {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+    align-items: left;
+    justify-content: left;
+    padding: 5px;
 }
 
 .sidenavContainer {
@@ -30,7 +30,7 @@
 
 .main-container {
     position: absolute;
-    top: 50px;
+    top: 10px;
     bottom: 0;
     left: 50px;
     right: 50px;

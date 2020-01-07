@@ -1,1 +1,21 @@
-<p>profile works!</p>
+<div>
+    <mat-card class="example-card">
+        <mat-card-header>
+
+            <mat-card-title>{{username}}</mat-card-title>
+            <mat-card-subtitle>User ID - {{userid}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <p>Client ID - {{clientid}}</p>
+            <p>Email ID - {{emailid}}</p>
+        </mat-card-content>
+        <mat-card-footer>
+            <p>Please reach out to your admin to alter personal information.</p>
+        </mat-card-footer>
+        <mat-card-actions>
+            <button color='primary' mat-raised-button (click)="notifybtn()">Notify</button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>

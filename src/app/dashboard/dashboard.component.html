@@ -24,6 +24,11 @@
                     <mat-icon class="dash-icon" >person</mat-icon>My Profile
                 </button>
             </div>
+            <div class='sidenav-content' *ngIf="isAdmin">
+                <button mat-button color="accent" [routerLink]="['./admin']">
+                    <mat-icon class="dash-icon" >account_box</mat-icon>Admin
+                </button>
+            </div>
         </mat-sidenav>
         <mat-sidenav-content>
             <p>

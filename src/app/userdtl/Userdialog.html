@@ -1,0 +1,25 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+<h1 mat-dialog-title backgroundcolor='primary'>Edit Users</h1>
+<div mat-dialog-content>
+    <p>{{user_name}}</p>
+
+    <form [formGroup]="editForm" (ngSubmit)="saveUserData()">
+        <mat-form-field>
+            <input matInput formControlName='emailid' [(ngModel)]="emailid" placeholder='email id'>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName='phone' [(ngModel)]="phone" placeholder='Phone'>
+        </mat-form-field>
+        <mat-form-field class="invisible">
+            <input matInput formControlName='userid' [(ngModel)]="userid">
+        </mat-form-field>
+        <mat-form-field [ngClass]="{'invisible': ifnotadmin}">
+            <input matInput formControlName='role' [(ngModel)]="role">
+        </mat-form-field>
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="saveUserData()" cdkFocusInitial [mat-dialog-close]="data">Submit</button>
+</div>

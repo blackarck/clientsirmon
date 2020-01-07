@@ -8,9 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginscrComponent } from './loginscr/loginscr.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent, DialogOverviewExampleDialog } from './profile/profile.component';
 import { ClientsnapComponent } from './clientsnap/clientsnap.component';
-
+import { AdmindashComponent } from './admindash/admindash.component';
+import { ClientdtlComponent } from './clientdtl/clientdtl.component';
+import { UserdtlComponent } from './userdtl/userdtl.component';
+import {Ceditdialog } from './clientdtl/ceditdialog'
+import {Clientadd } from './clientdtl/clientadd'
+import {Userdialog} from './userdtl/userdialog';
+import {Useradd} from './userdtl/useradd';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 const appRoutes: Routes = [
   { path: 'loginscr', component: LoginscrComponent },
@@ -18,18 +25,31 @@ const appRoutes: Routes = [
   children:[
     {path: 'home', component: ClientsnapComponent},
     {path: 'profile', component : ProfileComponent},
+    {path: 'admin', component : AdmindashComponent ,
+    children:[
+      {path: 'clientdtl', component: ClientdtlComponent},
+      {path: 'userdtl', component: UserdtlComponent},
+    ]},
     { path: '', redirectTo: '/dashboard/home', pathMatch:'full'}
   ]},
   { path: '', redirectTo: '/loginscr', pathMatch: 'full'  }
 ];
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     LoginscrComponent,
     DashboardComponent,
     ProfileComponent,
-    ClientsnapComponent
+    ClientsnapComponent,
+    AdmindashComponent,
+    DialogOverviewExampleDialog,
+    Ceditdialog,
+    Clientadd,
+    Userdialog,
+    Useradd,
+    ClientdtlComponent,
+    UserdtlComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +57,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
@@ -46,6 +67,13 @@ const appRoutes: Routes = [
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
+  ],
+  entryComponents: [
+    DialogOverviewExampleDialog,
+    Ceditdialog,
+    Userdialog,
+    Useradd,
+    Clientadd,
   ],
   providers: [],
   bootstrap: [AppComponent]
