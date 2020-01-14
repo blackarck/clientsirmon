@@ -18,10 +18,16 @@ import {Clientadd } from './clientdtl/clientadd'
 import {Userdialog} from './userdtl/userdialog';
 import {Useradd} from './userdtl/useradd';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { NgxLoadingModule } from 'ngx-loading';
+import { ReviewpassComponent } from './reviewpass/reviewpass.component';
+import { PwdrstsuccessComponent } from './pwdrstsuccess/pwdrstsuccess.component';
+
 
 const appRoutes: Routes = [
   { path: 'loginscr', component: LoginscrComponent },
-  { path: 'dashboard', component: DashboardComponent , 
+  { path: 'reviewpass', component: ReviewpassComponent },
+  { path: 'pwdreset', component: PwdrstsuccessComponent },
+  { path: 'dashboard', component: DashboardComponent, 
   children:[
     {path: 'home', component: ClientsnapComponent},
     {path: 'profile', component : ProfileComponent},
@@ -50,6 +56,8 @@ const appRoutes: Routes = [
     Useradd,
     ClientdtlComponent,
     UserdtlComponent,
+    ReviewpassComponent,
+    PwdrstsuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +66,7 @@ const appRoutes: Routes = [
     MaterialModule,
     HttpClientModule,
     Ng4LoadingSpinnerModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only

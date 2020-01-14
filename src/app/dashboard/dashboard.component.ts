@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import {LoginsrvcService} from '../loginsrvc.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,15 +11,18 @@ export class DashboardComponent implements OnInit {
 
   token="";
   currentUser;
+  clientname="";
+  currentUsrRole='';
   username: String;
   opened: boolean;
   isAdmin:boolean=false;
+  loading = false;
 
-  constructor( private route: ActivatedRoute,  private router: Router,private http: HttpClient,private loginsrvc: LoginsrvcService) {
+  constructor( private route: ActivatedRoute,  private router: Router,private http: HttpClient) {
     //console.log("Token recieved " + this.route.snapshot.paramMap.get('token') );
     // this.token = this.route.snapshot.paramMap.get('token');
     //make sure login is a valid login
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));   
     this.token = this.currentUser.token; // your token
     this.validatetoken();
     //console.log("end of constructor dashboard");
@@ -41,7 +43,7 @@ export class DashboardComponent implements OnInit {
         'authorization': this.token
       })
     };//end of httpoptions
-
+    this.loading = true;
     this.http.get<any>(posturl, httpOptions).subscribe(
       (res)=> {
         //console.log("response " + res.message +  " " + res.success);
@@ -49,12 +51,14 @@ export class DashboardComponent implements OnInit {
           //navigagte to dahsboard else keep it in loginscreen with error message
        //console.log(" user is "+ res[0].userid + " name " + res[0].user_name +  res[0].role);
         this.username = res[0].user_name;
+        this.currentUsrRole =  res[0].role;
         localStorage.setItem('userid',res[0].userid);
         localStorage.setItem('userrole', res[0].role);
         localStorage.setItem('clientid',res[0].clientid);
         localStorage.setItem('emailid',res[0].emailid);
         localStorage.setItem('username',res[0].user_name);
- 
+        localStorage.setItem('clientname',res[0].client_name);
+        
         if(res[0].role =='admin' || res[0].role=='suadmin'){
           this.isAdmin=true;
         }
@@ -64,11 +68,19 @@ export class DashboardComponent implements OnInit {
           this.router.navigate(['/']);
          
         }
+        if( this.currentUsrRole !='suadmin'){
+          this.clientname= " | " + localStorage.getItem('clientname');
+          }else{
+            this.clientname=" | Administrator";
+          }
+          this.loading = false;
       } ,
       (err)=> {
        // console.log(err);
+       this.loading = false;
         console.log("error " + err.error.message);
         this.router.navigate(['/']);
+
       }
     );
   }

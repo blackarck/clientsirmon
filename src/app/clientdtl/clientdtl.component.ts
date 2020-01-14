@@ -22,6 +22,7 @@ export class ClientdtlComponent implements OnInit {
   'contact_name', 'address1','address2','city','state','country' ,'edit'];
   clientarr= [];
   clientarr1=[];
+  showaddbtn=false;
   dataSource = new MatTableDataSource( this.clientarr1);
 
   constructor( private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef , public dialog: MatDialog) { 
@@ -30,6 +31,9 @@ export class ClientdtlComponent implements OnInit {
     this.userrole =   localStorage.getItem('userrole') ;
     this.token = this.currentUser.token; // your token
       //get client data
+      if(this.userrole=='suadmin'){
+        this.showaddbtn=true;
+      }
   }
   
    applyFilter(filterValue: string) {
@@ -85,7 +89,7 @@ export class ClientdtlComponent implements OnInit {
   } //getClientData
 
   addclient(){
-    console.log("lets add a new client");
+    //console.log("lets add a new client");
     const dialogRef = this.dialog.open(Clientadd, {
       width: '500px' 
     });

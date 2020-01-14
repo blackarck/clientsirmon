@@ -29,7 +29,7 @@ export class Clientadd {
        
     });// end of form
 
-    constructor( public dialogRef: MatDialogRef<Ceditdialog>,private http: HttpClient,private fb: FormBuilder, private spinnerService: Ng4LoadingSpinnerService,
+    constructor( public dialogRef: MatDialogRef<Clientadd>,private http: HttpClient,private fb: FormBuilder, private spinnerService: Ng4LoadingSpinnerService,
         @Inject(MAT_DIALOG_DATA) public rowdata:any) {
           
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

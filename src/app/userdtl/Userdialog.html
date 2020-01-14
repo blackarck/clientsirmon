@@ -1,5 +1,5 @@
-<ng4-loading-spinner></ng4-loading-spinner>
-<h1 mat-dialog-title backgroundcolor='primary'>Edit Users</h1>
+<h1 mat-dialog-title backgroundcolor='primary'>
+    Edit Users</h1>
 <div mat-dialog-content>
     <p>{{user_name}}</p>
 
@@ -10,16 +10,33 @@
         <mat-form-field>
             <input matInput formControlName='phone' [(ngModel)]="phone" placeholder='Phone'>
         </mat-form-field>
+        <mat-form-field>
+            <mat-select [(ngModel)]="active" formControlName='active' required>
+                <mat-option [value]="0">Active</mat-option>
+                <mat-option [value]="1">Inactive</mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <mat-form-field class="invisible">
             <input matInput formControlName='userid' [(ngModel)]="userid">
         </mat-form-field>
         <mat-form-field [ngClass]="{'invisible': ifnotadmin}">
-            <input matInput formControlName='role' [(ngModel)]="role">
+            <mat-label>Role</mat-label>
+            <mat-select [(ngModel)]="role" formControlName='role' required>
+                <mat-option *ngFor="let role of rolearr1" [value]="role.role">
+                    {{role.role}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
+
     </form>
+
+    <mat-checkbox [(ngModel)]="rstpswd">Reset Password</mat-checkbox>
+
 
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button (click)="saveUserData()" cdkFocusInitial [mat-dialog-close]="data">Submit</button>
+    <button mat-button (click)="saveUserData()" cdkFocusInitial [disabled]='!editForm.valid' [mat-dialog-close]="data">Submit</button>
 </div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>

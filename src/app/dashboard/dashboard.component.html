@@ -1,8 +1,7 @@
 <body class="mat-app-background">
-
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <span>Welcome {{username}}</span>
+            <span>Welcome {{username}} {{clientname}}</span>
             <span class="dash-spacer"></span>
             <button mat-icon-button [routerLink]="['./']">
               <mat-icon class="dash-icon" aria-hidden="false" aria-label="home icon">home</mat-icon>
@@ -37,9 +36,9 @@
             </button>
             </p>
             <div class='main-container' color='primary'>
-
                 <router-outlet></router-outlet>
             </div>
         </mat-sidenav-content>
     </mat-sidenav-container>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
 </body>

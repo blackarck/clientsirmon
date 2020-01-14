@@ -17,8 +17,8 @@ export class UserdtlComponent implements OnInit {
   token="";
   currentUser;
   userrole: String;
-  displayedColumns: string[] = ['clientid','userid','emailid',
-  'user_name', 'phone','role','edit'];
+  displayedColumns: string[] = ['client_name','userid','emailid',
+  'user_name', 'phone','role','active','edit'];
 
   usersarr= [];
   usersarr1=[];
@@ -90,7 +90,7 @@ export class UserdtlComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //  console.log('The dialog was closed');
+       //console.log('The dialog1 was closed');
       this.getuserData();
      // this.dataSource = new MatTableDataSource( this.clientarr);
      });
@@ -98,13 +98,13 @@ export class UserdtlComponent implements OnInit {
   }
 
   adduser(){
-    console.log("Lets add new user ");
+    //console.log("Lets add new user ");
     const dialogRef = this.dialog.open(Useradd, {
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //  console.log('The dialog was closed');
+      //console.log('The dialog2 was closed');
       this.getuserData();
      // this.dataSource = new MatTableDataSource( this.clientarr);
      });

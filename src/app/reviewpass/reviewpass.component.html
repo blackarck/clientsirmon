@@ -1,0 +1,46 @@
+<body class="mat-app-background">
+    <!-- Toolbar -->
+    <mat-toolbar color='primary'>
+        <mat-toolbar-row color='accent'>
+            <span> Cloud Eye  - Server Monitoring Application</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div>
+        <form [formGroup]="reviewform" (ngSubmit)="onSubmit()">
+            <mat-grid-list cols="2">
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="form-container">
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Password" formControlName='password1' required minlength="8">
+                            <div *ngIf="reviewform?.get('password1').errors && submitted" class="invalidmsg">
+                                password is required.
+                            </div>
+                            <!-- <div *ngIf="pwd.errors.minlength">
+                                password must be at least 4 characters long.
+                            </div>-->
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Re Type Password" formControlName='password2' required minlength="8">
+                            <div *ngIf="reviewform?.get('password2').errors && submitted" class="invalidmsg">
+                                password is required.
+                            </div>
+                            <!-- <div *ngIf="pwd.errors.minlength">
+                                password must be at least 4 characters long.
+                            </div>-->
+                        </mat-form-field>
+                        <div *ngIf="errormsg" class="invalidmsg">
+                            {{errormsgtxt}}
+                        </div>
+
+                        <mat-form-field class="invisible">
+                            <input matInput formControlName='passedtoken' [(ngModel)]="passedtoken">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" [disabled]='!reviewform.valid'>Submit</button>
+
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </div>
+</body>

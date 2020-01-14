@@ -4,30 +4,34 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-loginscr',
-  templateUrl: './loginscr.component.html',
-  styleUrls: ['./loginscr.component.css']
+  selector: 'app-reviewpass',
+  templateUrl: './reviewpass.component.html',
+  styleUrls: ['./reviewpass.component.css']
 })
-export class LoginscrComponent implements OnInit {
+export class ReviewpassComponent implements OnInit {
 
-  
-  submitted=false;
   errormsg=false;
+  submitted=false;
   errormsgtxt="";
-  loginform =  this.fb.group({
-  userid : new FormControl('', [Validators.required, Validators.min(5)]),
-  password : new FormControl('',Validators.required)
-});
+  passedtoken="";
+  reviewform =  this.fb.group({
+    password1 : new FormControl('',[Validators.required,Validators.min(8)]),
+    password2 : new FormControl('',[Validators.required,Validators.min(8)]),
+    passedtoken: new FormControl('')
+  });
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) { 
 
+    this.route.queryParams.subscribe(params => {
+      this.passedtoken = params['token'];
+      //console.log("Passed token is " + this.passedtoken);
+  });
+  }
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,) {  }
+  ngOnInit() { }
 
-   onSubmit(){
-
-    //this.submitted=true;
-    //console.log("Submitting form " + this.loginform.status + " " + this.loginform.get('userid').value + "  " + this.loginform.get('pwd').errors);
-    const posturl = 'https://localhost:3000/api/user/login';
-    let formObj = this.loginform.getRawValue(); 
+  onSubmit(){
+    const posturl = 'https://localhost:3000/api/util/reviewpass';
+    let formObj = this.reviewform.getRawValue(); 
     let serializedForm = JSON.stringify(formObj);
     //console.log("Serialized form " + serializedForm);
     const httpOptions = {
@@ -44,9 +48,11 @@ export class LoginscrComponent implements OnInit {
         if (res.success){
           //navigagte to dahsboard else keep it in loginscreen with error message
           //store to local storage along with username
-          localStorage.setItem('currentUser', JSON.stringify({ token: res.token, userid: this.loginform.get('userid').value }));
           //this.router.navigate(['/dashboard', { token: res.token}]);
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
+          console.log("Success " + res.message);
+          //redirect to another page
+          this.router.navigate(['/pwdreset']);
         }else{
           //do nothing and show the error message
           console.log("Show error message " + res.message);
@@ -60,9 +66,9 @@ export class LoginscrComponent implements OnInit {
           this.errormsgtxt=err.error.message;
       }//end of err
     );
+    //read input parameter
+    //send it along with password on submit
+    // if successful message comes back redirect user to login screen
+    //if error message comes back show it in a new page without form
   }//end of onsubmit
-  
-  ngOnInit() {
-  }
-
 }

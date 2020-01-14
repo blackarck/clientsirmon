@@ -1,4 +1,4 @@
-<button mat-icon-button color="primary" aria-label="add new client" matTooltip="Add new Client" (click)='addclient()'>
+<button mat-icon-button color="primary" aria-label="add new client" matTooltip="Add new Client" *ngIf='showaddbtn' (click)='addclient()'>
     <mat-icon>add_box</mat-icon>
   </button>
 
