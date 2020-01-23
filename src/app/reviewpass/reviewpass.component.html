@@ -8,7 +8,14 @@
     <div>
         <form [formGroup]="reviewform" (ngSubmit)="onSubmit()">
             <mat-grid-list cols="2">
-                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                    <div>
+                        Welcome to application. Reset your password from this screen.
+                        <p>Minimum length should be 8.
+                            <p>Use a strong password.
+                    </div>
+
+                </mat-grid-tile>
                 <mat-grid-tile>
                     <div class="form-container">
                         <mat-form-field>
@@ -36,11 +43,16 @@
                         <mat-form-field class="invisible">
                             <input matInput formControlName='passedtoken' [(ngModel)]="passedtoken">
                         </mat-form-field>
-                        <button mat-raised-button color="primary" [disabled]='!reviewform.valid'>Submit</button>
-
+                        <div>
+                            <button mat-raised-button color="primary" [disabled]='!reviewform.valid'>Submit</button>
+                        </div>
+                        <div *ngIf="reviewform.errors?.passnotsame && (reviewform.touched || reviewform.dirty)" class='invalidmsg'>
+                            Passwords don't match
+                        </div>
                     </div>
                 </mat-grid-tile>
             </mat-grid-list>
+
         </form>
     </div>
 </body>

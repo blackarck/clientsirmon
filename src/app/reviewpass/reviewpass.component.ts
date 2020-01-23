@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl,Validators } from '@angular/forms';
+import {FormBuilder, FormControl,Validators,FormGroup ,ValidatorFn,ValidationErrors} from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -18,7 +18,8 @@ export class ReviewpassComponent implements OnInit {
     password1 : new FormControl('',[Validators.required,Validators.min(8)]),
     password2 : new FormControl('',[Validators.required,Validators.min(8)]),
     passedtoken: new FormControl('')
-  });
+  },{validators: pwdrecheckvalidation});
+
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) { 
 
     this.route.queryParams.subscribe(params => {
@@ -72,3 +73,10 @@ export class ReviewpassComponent implements OnInit {
     //if error message comes back show it in a new page without form
   }//end of onsubmit
 }
+
+ export  const pwdrecheckvalidation: ValidatorFn = (control: FormGroup): ValidationErrors | null =>{
+  const pwd1=control.get('password1');
+  const pwd2=control.get('password2');
+  console.log("Checking fields " + pwd1 + " : " + pwd2);
+  return pwd1 && pwd2 && pwd1.value != pwd2.value ? {'passnotsame':true}:null;
+};

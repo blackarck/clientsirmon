@@ -9,6 +9,8 @@
 
 .invalidmsg {
     font-size: small;
+    color: red;
+    padding-bottom: 5px;
 }
 
 .invisible {
