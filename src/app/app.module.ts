@@ -36,7 +36,7 @@ const appRoutes: Routes = [
       {path: 'clientdtl', component: ClientdtlComponent},
       {path: 'userdtl', component: UserdtlComponent},
     ]},
-    { path: '', redirectTo: '/dashboard/home', pathMatch:'full'}
+  //  { path: '', redirectTo: '/dashboard/home', pathMatch:'full'}
   ]},
   { path: '', redirectTo: '/loginscr', pathMatch: 'full'  }
 ];

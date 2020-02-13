@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
           //do nothing and show the error message
            console.log("Show error message " + res.message);
           this.router.navigate(['/']);
-         
         }
         if( this.currentUsrRole !='suadmin'){
           this.clientname= " | " + localStorage.getItem('clientname');
@@ -74,6 +73,7 @@ export class DashboardComponent implements OnInit {
             this.clientname=" | Administrator";
           }
           this.loading = false;
+          this.router.navigate(['dashboard/home']);
       } ,
       (err)=> {
        // console.log(err);
