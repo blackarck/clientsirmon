@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {FormBuilder, FormControl,Validators } from '@angular/forms';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+//import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'Ceditdialog',
@@ -24,7 +24,7 @@ export class Ceditdialog {
        
     });
 
-    constructor( public dialogRef: MatDialogRef<Ceditdialog>,private http: HttpClient,private fb: FormBuilder, private spinnerService: Ng4LoadingSpinnerService,
+    constructor( public dialogRef: MatDialogRef<Ceditdialog>,private http: HttpClient,private fb: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public rowdata:any) {
           
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -52,14 +52,14 @@ export class Ceditdialog {
                   'authorization': this.token
                 })
               };//end of httpoptions
-              this.spinnerService.show();
+              
               this.http.post<any>(posturl,serializedForm,httpOptions).subscribe(
                 (res)=> {
                    //console.log("response " + res.message + " "  + res.success);
                   if (res.success){
                     //should update form data
                     console.log("Hiding spinner");
-                   this.spinnerService.hide();
+                  
                   } else{
                     //do nothing and show the error message
                     console.log("Show error message " + res.message);

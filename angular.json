@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "clientsirmon"
+  "defaultProject": "clientsirmon",
+  "cli": {
+    "analytics": false
+  }
 }

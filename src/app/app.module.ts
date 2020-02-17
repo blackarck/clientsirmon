@@ -13,15 +13,15 @@ import { ClientsnapComponent } from './clientsnap/clientsnap.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { ClientdtlComponent } from './clientdtl/clientdtl.component';
 import { UserdtlComponent } from './userdtl/userdtl.component';
-import {Ceditdialog } from './clientdtl/ceditdialog'
-import {Clientadd } from './clientdtl/clientadd'
+import {Ceditdialog } from './clientdtl/ceditdialog';
+import {Clientadd } from './clientdtl/clientadd';
 import {Userdialog} from './userdtl/userdialog';
 import {Useradd} from './userdtl/useradd';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+//import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ReviewpassComponent } from './reviewpass/reviewpass.component';
 import { PwdrstsuccessComponent } from './pwdrstsuccess/pwdrstsuccess.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 const appRoutes: Routes = [
   { path: 'loginscr', component: LoginscrComponent },
@@ -65,7 +65,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    Ng4LoadingSpinnerModule.forRoot(),
+    ChartsModule,
+    //Ng4LoadingSpinnerModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     RouterModule.forRoot(
       appRoutes,
